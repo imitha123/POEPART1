@@ -12,6 +12,7 @@ namespace Part2OfPoe
     {
         public void write_name_of_user(string name)
         {
+
             //create a text file called names.txt if it doesn't exist
             if (!File.Exists("names.txt"))
             {
