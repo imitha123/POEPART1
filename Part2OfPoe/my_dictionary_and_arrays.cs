@@ -12,6 +12,7 @@ namespace Part2OfPoe
         public Dictionary<string, string[]> Topics()
         {
 
+            // The dictionary contains topics as keys and an array of strings as values, where each string in the array is a different definition or explanation of the topic.
             Dictionary<string, string[]> topics = new Dictionary<string, string[]>()
         {
             { "phishing", new string[] { "Phishing is a cyber attack that uses disguised email as a weapon."
