@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace POEPART1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // object instance creations and evoking methods
+            greeting_voice system_voice = new greeting_voice();
+            // calling methods
+            ascii_art my_ascii_art = new ascii_art();
+            //call the method to display the ascii art
+            my_ascii_art.dispaly_art();
+            // calling the method to play the voice
+            user_interaction user_interact = new user_interaction();
+            user_interact.prompt();
+            user_interact.response_method();
+
+        }
+    }
+}
