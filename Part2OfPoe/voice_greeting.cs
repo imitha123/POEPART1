@@ -21,6 +21,7 @@ namespace Part2OfPoe
             play_voice(record);
         }
 
+
         public void play_voice(string voice)
         {
             try
