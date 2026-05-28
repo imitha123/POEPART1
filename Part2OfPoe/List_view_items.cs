@@ -28,6 +28,7 @@ namespace Part2OfPoe
             };
             return item;
         }
+
         // This method creates a ListViewItem with the content ": {text} " styled in light blue and with a font size of 15, where {text} is the input parameter.
         public ListViewItem topic_item(string text)
         {
