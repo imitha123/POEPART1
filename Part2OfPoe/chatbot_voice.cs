@@ -11,7 +11,7 @@ namespace Part2OfPoe
     {
         // speech synthesizer object to convert text to speech
         SpeechSynthesizer synthesizer = new SpeechSynthesizer();
-
+        // This method takes a string input (chatbot_response) and uses the SpeechSynthesizer to convert the text to speech.
         public void speak(string chatbot_response)
         {
            
