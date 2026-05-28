@@ -139,6 +139,7 @@ namespace Part2OfPoe
             };
             return favorite_topic_not_found_messages;
         }
+        // method to return a dictionary of sentiments and their corresponding responses
         public Dictionary<string, string[]> sentiment_detection()
         {
             Dictionary<string, string[]> sentiment_detec = new Dictionary<string, string[]>
