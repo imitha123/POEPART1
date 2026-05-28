@@ -29,6 +29,8 @@ namespace Part2OfPoe
                 MessageBox.Show("Name can't be 2 or less letters", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
+
+
             return true;
         }
 
