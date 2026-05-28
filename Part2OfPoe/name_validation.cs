@@ -12,11 +12,10 @@ namespace Part2OfPoe
     public class name_validation
     {
         // This method validates the input name based on specific criteria:
-        public bool validate_name(string name)
+        public bool validate_name(string name) 
         {
             if (String.IsNullOrEmpty(name))
             {
-
                 MessageBox.Show("Name Cannot be empty!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
@@ -32,6 +31,7 @@ namespace Part2OfPoe
             }
             return true;
         }
+
 
     }
 }
