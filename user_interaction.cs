@@ -1,6 +1,172 @@
-﻿namespace POEPART1
+﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Threading;
+
+namespace POEPART1
 {
     internal class user_interaction
     {
+        // global variable
+        string name;
+
+        // prompt method
+        public void prompt()
+        {
+            //prompt the user
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("Please enter your name please >> ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            name = Console.ReadLine();
+
+            // greet the user
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Hi " + name_validation() + ", Welcome to SuperBot");
+            ascii_art my_ascii_art = new ascii_art();
+            Console.WriteLine("*************************************");
+        }
+
+
+        // validate method
+        public string name_validation()
+        {
+
+
+            // conditional statement
+            if (String.IsNullOrEmpty(name))
+            {
+                // loop through if the name is empty
+                while (String.IsNullOrEmpty(name))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Incorrect, the name can't be empty!");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write("Please try again >> ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    name = Console.ReadLine();
+
+                }
+            }
+            // conditional statement
+            if (name.Length <= 2 || !Regex.IsMatch(name, @"^[a - zA - Z]+$"))
+            {
+                while (name.Length <= 2 || !Regex.IsMatch(name, @"^[a-zA-Z]+$"))
+                {
+                    // loop through if the name is less than 2 characters or contains non-letter characters
+                    if (name.Length <= 2)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Incorrect, User name can't be less than 2 characters!");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("Please try again >> ");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        name = Console.ReadLine();
+                    }
+                    // loop through if the name contains non-letter characters
+                    if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Incorrect, User name should only contain letters!");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("Please try again >> ");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        name = Console.ReadLine();
+                    }
+                    // loop through if the name is empty
+                    if (String.IsNullOrEmpty(name))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Incorrect, User name can't empty!");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("Please try again >> ");
+                        name = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine();
+                    }
+
+                }
+
+            }
+
+            return name;
+        }
+        // method for responses
+        public void response_method()
+        {
+            while (true)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(name_validation() + ": ");
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                string question = Console.ReadLine().ToLower();
+
+                // if the user wants to exit the program
+                if (question.Equals("exit"))
+                {
+                    Console.ResetColor();
+                    break;
+                }
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write("SuperBot: ");
+                expected_keys(question);
+
+                Console.WriteLine();
+            }
+
+
+        }
+        // method to return the split array
+        public string[] split_function(string input)
+        {
+            string[] split = input.Split(' ', ',', '?', '.');
+
+            return split;
+        }
+        // expected keys from the split array
+        public void expected_keys(string question)
+        {
+            // my dictionary with all expected keys and their corresponding answers
+            Dictionary<string, string> answer = new Dictionary<string, string>();
+
+
+            answer.Add("how", "I am good thanks for asking!");
+            answer.Add("purpose", "My purpose is to assist with any CyberSecurity related questions.");
+            answer.Add("ask", "You can ask me about Password Safety, Phishing and Safe Browsing.");
+            answer.Add("phishing", "Phishing is a type of cyber attack where someone tries to trick you into giving away sensitive information like passwords, bank details, or personal data.");
+            answer.Add("password", "Password safety is the practice of creating, managing, and protecting your passwords so that unauthorized people (like hackers) can’t access your accounts.");
+            answer.Add("browsing", "Safe browsing means using the internet in a way that protects you from threats like scams, malware, and data theft.");
+
+            bool found = false;
+
+            foreach (string e in split_function(question))
+            {
+                if (answer.ContainsKey(e))
+                {
+                    //Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    //Console.Write(answer[e]);
+                    //found = true;
+
+                    foreach (char letter in answer[e])
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write(letter);
+                        Thread.Sleep(40); // Adjust the delay as needed
+                        found = true;
+                    }
+                }
+
+            }
+            // if the quesion is not in the dictionary, ask the user to rephrase
+            if (found.Equals(false))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("I didn't quite understand that. Could you rephrase?");
+            }
+
+            Console.ResetColor();
+        }
+
     }
 }
